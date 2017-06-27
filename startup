@@ -1,0 +1,17 @@
+#!/bin/sh
+
+addgroup -g ${GID} lutim && adduser -H -s /bin/sh -D -G lutim -u ${UID} lutim
+
+mkdir -p /usr/lutim/data /usr/lutim/files
+chown -R lutim:lutim /usr/lutim/
+
+sed -i -e 's|<secret>|'${SECRET}'|' \
+        -e 's|<contact>|'${CONTACT}'|' \
+        -e 's|<max_file_size>|'${MAX_FILE_SIZE}'|' \
+        -e 's|<webroot>|'${WEBROOT}'|' \
+        -e 's|<default_delay>|'${DEFAULT_DELAY}'|' \
+        -e 's|<max_delay>|'${MAX_DELAY}'|' /usr/lutim/lutim.conf
+
+cd /usr/lutim
+exec su-exec lutim:lutim /sbin/tini -- /usr/local/bin/carton exec hypnotoad -f /usr/lutim/script/lutim
+
