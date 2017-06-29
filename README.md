@@ -1,5 +1,9 @@
 ![](http://framacloud.org/wp-content/uploads/2015/03/lutim.jpg)
 
+[![Build Status](https://drone.xataz.net/api/badges/xataz/docker-lutim/status.svg)](https://drone.xataz.net/xataz/docker-lutim)
+[![](https://images.microbadger.com/badges/image/xataz/lutim.svg)](https://microbadger.com/images/xataz/lutim "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/xataz/lutim.svg)](https://microbadger.com/images/xataz/lutim "Get your own version badge on microbadger.com")
+
 > This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
 > If you don't trust, you can build yourself.
 
