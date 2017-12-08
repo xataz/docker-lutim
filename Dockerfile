@@ -1,6 +1,6 @@
 FROM xataz/alpine:3.7
 
-ARG LUTIM_VER=0.8.1
+ARG LUTIM_VER=0.8.6
 
 ENV GID=991 \
     UID=991 \
@@ -14,7 +14,7 @@ ENV GID=991 \
 LABEL description="lutim based on alpine" \
       tags="latest 0.8.6 0.8" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="2017120201"
+      build_ver="2017120901"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
@@ -26,13 +26,16 @@ RUN BUILD_DEPS="build-base \
                 wget \
                 postgresql-dev \
                 gnupg \
-                zlib-dev" \
+                zlib-dev \
+                mariadb-dev \
+                perl-devel-checklib" \
     && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.5/main ${BUILD_DEPS} \
                 libressl \
                 perl \
                 libidn \
                 perl-crypt-rijndael \
                 perl-test-manifest \
+                perl-dbi \
                 imagemagick==6.9.6.8-r1 \
                 imagemagick-dev==6.9.6.8-r1 \
                 shared-mime-info \
