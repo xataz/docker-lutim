@@ -8,7 +8,7 @@
 > If you don't trust, you can build yourself.
 
 ## Tag available
-* latest [(lutim/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lutim/Dockerfile)
+* latest 0.8.7 0.8 [(lutim/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lutim/Dockerfile)
 
 ## Description
 What is [Lutim](https://git.framasoft.org/luc/lutim) ?
