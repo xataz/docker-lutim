@@ -14,7 +14,7 @@ ENV GID=991 \
 LABEL description="lutim based on alpine" \
       tags="latest 0.8.8 0.8 0" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201802091943"
+      build_ver="201802220331"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
