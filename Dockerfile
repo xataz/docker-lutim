@@ -14,7 +14,7 @@ ENV GID=991 \
 LABEL description="lutim based on alpine" \
       tags="latest 0.9.2 0.9 0" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201803100500"
+      build_ver="201803111201"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
@@ -52,7 +52,7 @@ RUN BUILD_DEPS="build-base \
     && rm -rf cpanfile.snapshot \
     && carton install \
     && apk del --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.5/main ${BUILD_DEPS} imagemagick-dev \
-    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/* /usr/lutim/utilities
+    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/*
 
 VOLUME /usr/lutim/data/ /usr/lutim/files
 
