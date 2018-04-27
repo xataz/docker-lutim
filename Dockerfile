@@ -1,6 +1,6 @@
 FROM xataz/alpine:3.7
 
-ARG LUTIM_VER=0.10.2
+ARG LUTIM_VER=0.10.3
 
 ENV GID=991 \
     UID=991 \
@@ -12,9 +12,9 @@ ENV GID=991 \
     MAX_DELAY=0
 
 LABEL description="lutim based on alpine" \
-      tags="latest 0.10.2 0.10 0" \
+      tags="latest 0.10.3 0.10 0" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201804250600"
+      build_ver="201804270600"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
