@@ -1,4 +1,4 @@
-![](http://framacloud.org/wp-content/uploads/2015/03/lutim.jpg)
+![](https://framagit.org/luc/lutim/raw/master/themes/default/public/img/lutim128.png)
 
 [![Build Status](https://drone.xataz.net/api/badges/xataz/docker-lutim/status.svg)](https://drone.xataz.net/xataz/docker-lutim)
 [![](https://images.microbadger.com/badges/image/xataz/lutim.svg)](https://microbadger.com/images/xataz/lutim "Get your own image badge on microbadger.com")
@@ -11,7 +11,7 @@
 * latest, 0.10.4, 0.10, 0 [(Dockerfile)](https://github.com/xataz/docker-lutim/blob/master/Dockerfile)
 
 ## Description
-What is [Lutim](https://git.framasoft.org/luc/lutim) ?
+What is [Lutim](https://framagit.org/luc/lutim) ?
 
 It means Let's Upload That Image.
 
@@ -24,7 +24,7 @@ Images are indefinitly stored unless you request that they will be deleted at fi
 ## BUILD IMAGE
 
 ```shell
-docker build -t xataz/lutim github.com/xataz/dockerfiles.git#master:lutim
+docker build -t xataz/lutim github.com/xataz/docker-lutim.git#master
 ```
 
 ## Configuration
