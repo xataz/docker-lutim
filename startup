@@ -2,16 +2,18 @@
 
 addgroup -g ${GID} lutim && adduser -H -s /bin/sh -D -G lutim -u ${UID} lutim
 
-mkdir -p /usr/lutim/data /usr/lutim/files
-chown -R lutim:lutim /usr/lutim/
+cd /usr/lutim
+mkdir -p data files
+chown -R lutim:lutim .
 
-sed -i -e 's|<secret>|'${SECRET}'|' \
+# Outputting directly to lutim.conf using "sed -i" when mounted with docker fails.
+echo "$(sed \
+        -e 's|<secret>|'${SECRET}'|' \
         -e 's|<contact>|'${CONTACT}'|' \
         -e 's|<max_file_size>|'${MAX_FILE_SIZE}'|' \
         -e 's|<webroot>|'${WEBROOT}'|' \
         -e 's|<default_delay>|'${DEFAULT_DELAY}'|' \
-        -e 's|<max_delay>|'${MAX_DELAY}'|' /usr/lutim/lutim.conf
+        -e 's|<max_delay>|'${MAX_DELAY}'|' lutim.conf
+)" > lutim.conf
 
-cd /usr/lutim
 exec su-exec lutim:lutim /sbin/tini -- /usr/local/bin/carton exec hypnotoad -f /usr/lutim/script/lutim
-
