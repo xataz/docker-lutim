@@ -29,6 +29,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 gnupg \
                 zlib-dev \
                 mariadb-dev \
+                imagemagick6-dev \
                 perl-devel-checklib \
     && apk add --update --no-cache \
                 libressl \
@@ -37,8 +38,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 perl-crypt-rijndael \
                 perl-test-manifest \
                 perl-dbi \
-                imagemagick==6.9.6.8-r1 \
-                imagemagick-dev==6.9.6.8-r1 \
+                imagemagick6 \
                 shared-mime-info \
                 tini \
                 su-exec \
@@ -51,7 +51,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
     && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> cpanfile \
     && rm -rf cpanfile.snapshot \
     && carton install \
-    && apk del .build-deps imagemagick-dev \
+    && apk del .build-deps \
     && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/*
 
 VOLUME /usr/lutim/data /usr/lutim/files
