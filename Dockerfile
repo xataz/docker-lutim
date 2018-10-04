@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.7
+FROM alpine:3.8
 
 ARG LUTIM_VER=0.10.4
 
@@ -16,7 +16,8 @@ LABEL description="lutim based on alpine" \
       maintainer="xataz <https://github.com/xataz>" \
       build_ver="201806190431"
 
-RUN BUILD_DEPS="build-base \
+RUN apk add --update --no-cache --virtual .build-deps \
+                build-base \
                 libressl-dev \
                 ca-certificates \
                 git \
@@ -28,8 +29,8 @@ RUN BUILD_DEPS="build-base \
                 gnupg \
                 zlib-dev \
                 mariadb-dev \
-                perl-devel-checklib" \
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.5/main ${BUILD_DEPS} \
+                perl-devel-checklib \
+    && apk add --update --no-cache \
                 libressl \
                 perl \
                 libidn \
@@ -51,7 +52,7 @@ RUN BUILD_DEPS="build-base \
     && cd /usr/lutim \
     && rm -rf cpanfile.snapshot \
     && carton install \
-    && apk del --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.5/main ${BUILD_DEPS} imagemagick-dev \
+    && apk del .build-deps imagemagick-dev \
     && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/*
 
 VOLUME /usr/lutim/data/ /usr/lutim/files
