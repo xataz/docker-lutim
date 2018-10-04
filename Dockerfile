@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ARG LUTIM_VER=0.10.4
+ARG LUTIM_VERSION=0.11.3
 
 ENV GID=991 \
     UID=991 \
@@ -45,22 +45,21 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 postgresql-libs \
     && echo | cpan \
     && cpan install Carton \
-    && cd / \
-    && git clone -b ${LUTIM_VER} https://git.framasoft.org/luc/lutim.git /usr/lutim \
-    && echo "requires 'Image::Magick';" >> /usr/lutim/cpanfile \
-    && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> /usr/lutim/cpanfile \
+    && git clone -b ${LUTIM_VERSION} https://framagit.org/luc/lutim.git /usr/lutim \
     && cd /usr/lutim \
+    && echo "requires 'Image::Magick';" >> cpanfile \
+    && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> cpanfile \
     && rm -rf cpanfile.snapshot \
     && carton install \
     && apk del .build-deps imagemagick-dev \
     && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/*
 
-VOLUME /usr/lutim/data/ /usr/lutim/files
+VOLUME /usr/lutim/data /usr/lutim/files
 
 EXPOSE 8181
 
-ADD lutim.conf /usr/lutim/lutim.conf
-ADD startup /usr/local/bin/startup
+COPY lutim.conf /usr/lutim/lutim.conf
+COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
 
 CMD ["/usr/local/bin/startup"]
