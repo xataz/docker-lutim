@@ -41,6 +41,7 @@ docker build -t xataz/lutim github.com/xataz/docker-lutim.git#master
 Tip : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
 
 ### Volumes
+* /usr/lutim/lutim.conf : Lutim's configuration file is here
 * /usr/lutim/data : Lutim's database is here
 * /usr/lutim/files : Location of uploaded images
 
