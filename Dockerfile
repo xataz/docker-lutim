@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ARG LUTIM_VERSION=0.11.3
+ARG LUTIM_VERSION=0.11.4
 
 ENV GID=991 \
     UID=991 \
@@ -12,9 +12,9 @@ ENV GID=991 \
     MAX_DELAY=0
 
 LABEL description="lutim based on alpine" \
-      tags="latest 0.10.4 0.10 0" \
+      tags="latest 0.11.4 0.11 0" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201806190431"
+      build_ver="201812081200"
 
 RUN apk add --update --no-cache --virtual .build-deps \
                 build-base \
@@ -47,8 +47,8 @@ RUN apk add --update --no-cache --virtual .build-deps \
     && cpan install Carton \
     && git clone -b ${LUTIM_VERSION} https://framagit.org/luc/lutim.git /usr/lutim \
     && cd /usr/lutim \
-    && echo "requires 'Image::Magick';" >> cpanfile \
-    && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> cpanfile \
+    && echo "requires 'Image::Magick';" >> /usr/lutim/cpanfile \
+    && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> /usr/lutim/cpanfile \
     && rm -rf cpanfile.snapshot \
     && carton install \
     && apk del .build-deps \
