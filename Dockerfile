@@ -1,6 +1,7 @@
 FROM alpine:3.8
 
-ARG LUTIM_VERSION=0.11.4
+ARG LUTIM_VERSION=0.11.5
+ARG LUTIM_REPO=https://framagit.org/fiat-tux/hat-softwares/lutim.git
 
 ENV GID=991 \
     UID=991 \
@@ -12,9 +13,9 @@ ENV GID=991 \
     MAX_DELAY=0
 
 LABEL description="lutim based on alpine" \
-      tags="latest 0.11.4 0.11 0" \
+      tags="latest 0.11.5 0.11.4 0.11 0" \
       maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201812081200"
+      build_ver="201905111800"
 
 RUN apk add --update --no-cache --virtual .build-deps \
                 build-base \
@@ -45,7 +46,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 postgresql-libs \
     && echo | cpan \
     && cpan install Carton \
-    && git clone -b ${LUTIM_VERSION} https://framagit.org/luc/lutim.git /usr/lutim \
+    && git clone -b ${LUTIM_VERSION} ${LUTIM_REPO} /usr/lutim \
     && cd /usr/lutim \
     && echo "requires 'Image::Magick';" >> /usr/lutim/cpanfile \
     && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> /usr/lutim/cpanfile \
