@@ -59,7 +59,9 @@ VOLUME /usr/lutim/data /usr/lutim/files
 EXPOSE 8181
 
 COPY lutim.conf /usr/lutim/lutim.conf
-COPY startup /usr/local/bin/startup
-RUN chmod +x /usr/local/bin/startup
+COPY startup    /usr/local/bin/startup
+RUN  chmod +x   /usr/local/bin/startup
+COPY lutim_cron /etc/periodic/daily/lutim_cron
+RUN  chmod +x   /etc/periodic/daily/lutim_cron
 
 CMD ["/usr/local/bin/startup"]

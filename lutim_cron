@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Execute Lutim cron jobs
+# see https://framagit.org/fiat-tux/hat-softwares/lutim/wikis/cron-jobs
+
+cd /usr/lutim
+
+# Delete IP adresses from database
+su lutim -c "carton exec script/lutim cron cleanbdd --mode production"
+
+# Delete expired files
+su lutim -c "carton exec script/lutim cron cleanfiles --mode production"
+
+# Watch the size of the files directory
+su lutim -c "carton exec script/lutim cron watch --mode production"
+
+# Statistics
+su lutim -c "carton exec script/lutim cron stats --mode production"
+su lutim -c "carton exec hypnotoad script/lutim"
